@@ -1,1 +1,2 @@
-console.log("packages")
+import Button from "./components/Button/Button";
+export { Button };

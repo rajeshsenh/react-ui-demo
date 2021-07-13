@@ -5,30 +5,28 @@ import external from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import { uglify } from "rollup-plugin-uglify";
 
-const input = 'src/index.js';
-const output = 'dist/index';
+const input = "src/index.js";
+const output = "dist/index";
 
 export default [
   {
     input: input,
     output: {
       file: `${output}.js`,
-      format: 'cjs'
+      format: "cjs",
     },
     plugins: [
       resolve({
-        browser: true
+        browser: true,
       }),
       commonjs({
-        include: [
-          'node_modules/**'
-        ],
+        include: ["node_modules/**"],
         namedExports: {
           "react-dom": ["createPortal"],
         },
       }),
       babel({
-        exclude: "node_modules/**"
+        exclude: "node_modules/**",
       }),
       external(),
       uglify(),
@@ -38,15 +36,13 @@ export default [
     input: input,
     output: {
       file: `${output}.modern.js`,
-      format: 'es'
+      format: "es",
     },
 
     plugins: [
       resolve(),
       commonjs({
-        include: [
-          'node_modules/**'
-        ],
+        include: ["node_modules/**"],
         namedExports: {
           "react-dom": ["createPortal"],
         },
@@ -61,22 +57,20 @@ export default [
   {
     input: input,
     output: {
-      name: 'ReactUi',
+      name: "ReactUi",
       file: `${output}.umd.js`,
       globals: {
-        react: 'React',
-        'styled-components': 'styled',
-        'prop-types': 'PropTypes',
-        'prop-types/checkPropTypes': 'checkPropTypes'
+        react: "React",
+        "styled-components": "styled",
+        "prop-types": "PropTypes",
+        "prop-types/checkPropTypes": "checkPropTypes",
       },
-      format: 'umd'
+      format: "umd",
     },
     plugins: [
       resolve(),
       commonjs({
-        include: [
-          'node_modules/**'
-        ],
+        include: ["node_modules/**"],
         namedExports: {
           "react-dom": ["createPortal"],
         },
@@ -84,9 +78,8 @@ export default [
       external(),
       babel({
         exclude: "node_modules/**",
-
       }),
       terser(),
     ],
-  }
-]
+  },
+];
