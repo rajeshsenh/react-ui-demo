@@ -1,0 +1,87 @@
+{
+  "name": "react-ui-demo",
+  "version": "1.0.0",
+  "description": "Modern React Ui Component",
+  "keywords": [
+    "React UI",
+    "Component"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "umd:main": "dist/index.umd.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "watch": "rollup -c --watch",
+    "dev": "concurrently \" npm run watch \" \" npm run start --prefix examples/react \"  ",
+    "test": "run-s test:unit test:lint test:build",
+    "test:lint": "eslint src/**/*.js",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/components/**/*.js",
+    "test:build": "run-s build",
+    "lint:fix": "prettier-eslint '**/*.js' --write",
+    "prepublish": "npm run build"
+  },
+  "author": "",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run lint:fix"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "prettier-eslint-cli": "^5.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "react-test-renderer": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^1.32.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-terser": "^5.3.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "styled-components": "^5.1.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1"
+  },
+  "files": [
+    "dist"
+  ]
+}
